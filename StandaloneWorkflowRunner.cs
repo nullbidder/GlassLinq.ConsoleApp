@@ -73,6 +73,38 @@ namespace GlassLinq.Studio
 
         #endregion
 
+
+
+
+        /// <summary>
+        /// Execute an in-memory state machine workflow directly (used by Studio Designer).
+        /// </summary>
+        public void Run(StateMachineActivity stateMachine)
+        {
+            Log($"═══════════════════════════════════════════════════");
+            Log($"WorkflowRunner: Starting IN-MEMORY execution");
+            Log($"═══════════════════════════════════════════════════");
+
+            if (!ValidateStateMachine(stateMachine))
+            {
+                return;
+            }
+
+            Log($"\nStarting execution from InitialState: {stateMachine.InitialState.DisplayName}");
+            Log($"─────────────────────────────────────────────────");
+
+            // Re-use your existing core execution logic
+            ExecuteStateMachine(stateMachine);
+
+            Log($"─────────────────────────────────────────────────");
+            Log($"WorkflowRunner: Execution completed successfully");
+            Log($"═══════════════════════════════════════════════════\n");
+        }
+
+
+
+
+
         #region Main Execution Method
 
         /// <summary>
