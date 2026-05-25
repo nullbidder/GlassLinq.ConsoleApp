@@ -17,9 +17,9 @@ namespace GlassLinq.Studio.Examples
             Console.WriteLine("═══════════════════════════════════════════════════════════\n");
 
             // Example 1: Basic execution with default condition evaluator
-            Example1_BasicExecution();
+           /// Example1_BasicExecution();
 
-            Console.WriteLine("\n\n");
+           // Console.WriteLine("\n\n");
 
             // Example 2: Execution with custom condition evaluator
             Example2_CustomConditionEvaluator();

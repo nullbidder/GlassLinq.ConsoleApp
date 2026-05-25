@@ -290,46 +290,45 @@ namespace GlassLinq.Studio
                     }
                 }
 
-                // 2. Execute Main Activities (the state's core logic)
+                // 2. Execute Main Activities
                 if (state.Activities != null && state.Activities.Count > 0)
                 {
-                    Log($"    ├─ Main Activities ({state.Activities.Count}):");
-                    foreach (var activity in state.Activities)
+                    // Filter out identical object reference pointers injected by duplicate XAML tags
+                    var distinctActivities = state.Activities.Where(a => a != null).Distinct().ToList();
+
+                    if (distinctActivities.Count > 0)
                     {
-                        try
+                        Log($"    ├─ Main Activities ({distinctActivities.Count} unique top-level node(s)):");
+                        foreach (var activity in distinctActivities)
                         {
-                            Log($"    │  ├─ {activity.DisplayName}");
-                            activity.Execute();
+                            try
+                            {
+                                Log($"    │  ├─ Executing Node: {activity.DisplayName}");
+
+                                // Execute the sequence/activity container once. 
+                                // Because it's a Sequence or linked activity, it cascades natively.
+                                activity.Execute();
+                            }
+                            catch (BusinessRuleException brex)
+                            {
+                                Log($"    │  └─ Business Exception Captured: {brex.Message}");
+                                state.LastResult = "BusinessException";
+                            }
+                            catch (Exception ex)
+                            {
+                                LogError($"       │  └─ System Exception Captured: {ex.Message}");
+                                state.LastResult = "SystemException";
+                            }
                         }
-                        catch (BusinessRuleException brex)
-                        {
-                            Log($"    │  └─ Business Exception: {brex.Message}");
-                            state.LastResult = "BusinessException";
-                        }
-                        catch (Exception ex)
-                        {
-                            LogError($"       │  └─ System Exception: {ex.Message}");
-                            state.LastResult = "SystemException";
-                        }
+                    }
+                    else
+                    {
+                        InvokeStateFallback(state);
                     }
                 }
                 else
                 {
-                    // If the state has no activities, just execute it directly
-                    try
-                    {
-                        state.Execute();
-                    }
-                    catch (BusinessRuleException brex)
-                    {
-                        Log($"    ├─ Business Exception: {brex.Message}");
-                        state.LastResult = "BusinessException";
-                    }
-                    catch (Exception ex)
-                    {
-                        LogError($"    ├─ System Exception: {ex.Message}");
-                        state.LastResult = "SystemException";
-                    }
+                    InvokeStateFallback(state);
                 }
 
                 // 3. Execute Exit Actions
@@ -363,6 +362,28 @@ namespace GlassLinq.Studio
             }
         }
 
+        /// <summary>
+        /// Safe execution fallback if the explicit activity collections are empty.
+        /// </summary>
+        private void InvokeStateFallback(StateActivity state)
+        {
+            try
+            {
+                Log($"    │  ► Invoking State Base Container Direct Execution...");
+                // Call the base sequence execution wrapper directly
+                state.Execute();
+            }
+            catch (BusinessRuleException brex)
+            {
+                Log($"    ├─ Business Exception: {brex.Message}");
+                state.LastResult = "BusinessException";
+            }
+            catch (Exception ex)
+            {
+                LogError($"    ├─ System Exception: {ex.Message}");
+                state.LastResult = "SystemException";
+            }
+        }
         #endregion
 
         #region Transition Logic

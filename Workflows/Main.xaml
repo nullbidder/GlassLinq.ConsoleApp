@@ -8,7 +8,7 @@
   <StateMachineActivity._Activities>
     <sco:ObservableCollection x:TypeArguments="BaseActivity" />
   </StateMachineActivity._Activities>
-  <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID10" CanvasX="250" CanvasY="180" Description="Read configuration file and initialize applications used in the process." DisplayName="INITIALIZATION" Icon="⏻" IsFinalState="False" LastResult="Success" Name="Activity_5bc1b64b" NodeHeight="350" NodeWidth="500" StateColor="#00B7C3" StateType="Normal">
+  <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID10" CanvasX="250" CanvasY="180" Description="Read configuration file and initialize applications used in the process." DisplayName="INITIALIZATION" Icon="⏻" IsFinalState="False" LastResult="Success" Name="Activity_75ca3dc4" NodeHeight="350" NodeWidth="500" StateColor="#00B7C3" StateType="Normal">
     <StateActivity.EntryActions>
       <sco:ObservableCollection x:TypeArguments="BaseActivity" />
     </StateActivity.EntryActions>
@@ -21,7 +21,7 @@
     <StateActivity.Transitions>
       <StateTransition Condition="Success" DisplayName="Default Transition">
         <StateTransition.TargetState>
-          <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID7" CanvasX="650" CanvasY="405" Description="Get the next transaction to be processed." DisplayName="GET TRANSACTION" Icon="📥" IsFinalState="False" LastResult="Success" Name="Activity_3cffa1ee" NodeHeight="270" NodeWidth="250" StateColor="#00B7C3" StateType="Normal">
+          <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID7" CanvasX="650" CanvasY="405" Description="Get the next transaction to be processed." DisplayName="GET TRANSACTION" Icon="📥" IsFinalState="False" LastResult="Success" Name="Activity_56d7b818" NodeHeight="270" NodeWidth="250" StateColor="#00B7C3" StateType="Normal">
             <StateActivity.EntryActions>
               <sco:ObservableCollection x:TypeArguments="BaseActivity" />
             </StateActivity.EntryActions>
@@ -34,7 +34,7 @@
             <StateActivity.Transitions>
               <StateTransition Condition="NewTransaction" DisplayName="Default Transition">
                 <StateTransition.TargetState>
-                  <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID9" CanvasX="1000" CanvasY="178" Description="Process a single transaction. Result can be Success, Business Exception, or System Exception." DisplayName="PROCESS TRANSACTION" Icon="⚙️" IsFinalState="False" LastResult="Success" Name="Activity_aa6698b9" NodeHeight="220" NodeWidth="250" StateColor="#00B7C3" StateType="Normal">
+                  <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID9" CanvasX="1000" CanvasY="178" Description="Process a single transaction. Result can be Success, Business Exception, or System Exception." DisplayName="PROCESS TRANSACTION" Icon="⚙️" IsFinalState="False" LastResult="Success" Name="Activity_48a8596d" NodeHeight="220" NodeWidth="250" StateColor="#00B7C3" StateType="Normal">
                     <StateActivity.EntryActions>
                       <sco:ObservableCollection x:TypeArguments="BaseActivity" />
                     </StateActivity.EntryActions>
@@ -49,7 +49,7 @@
                       <StateTransition TargetState="{x:Reference __ReferenceID7}" Condition="BusinessException" DisplayName="Default Transition" />
                       <StateTransition Condition="SystemException" DisplayName="Default Transition">
                         <StateTransition.TargetState>
-                          <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID8" CanvasX="650" CanvasY="55" Description="End process and close all applications used." DisplayName="END PROCESS" Icon="🏁" IsFinalState="False" LastResult="Success" Name="Activity_6816f9ce" NodeHeight="270" NodeWidth="250" StateColor="#00B7C3" StateType="Normal">
+                          <StateActivity NextActivity="{x:Null}" x:Name="__ReferenceID8" CanvasX="650" CanvasY="55" Description="End process and close all applications used." DisplayName="END PROCESS" Icon="🏁" IsFinalState="False" LastResult="Success" Name="Activity_d71fa48e" NodeHeight="270" NodeWidth="250" StateColor="#00B7C3" StateType="Normal">
                             <StateActivity.EntryActions>
                               <sco:ObservableCollection x:TypeArguments="BaseActivity" />
                             </StateActivity.EntryActions>
@@ -73,7 +73,91 @@
                     <StateActivity._Activities>
                       <sco:ObservableCollection x:TypeArguments="BaseActivity" />
                     </StateActivity._Activities>
-                    <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                    <gsau:TypeIntoActivity AnchorSelector="&lt;webctrl aaname='First Name' tag='LABEL' check:innerText='First Name' /&gt;" CanvasX="154.32799999999997" CanvasY="202.08800000000002" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_f962368c" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='g1N0m' name='g1N0m' type='text' /&gt;" TextData="Bot" Timeout="30000" UseAnchor="True">
+                      <gsau:TypeIntoActivity.LocalVariables>
+                        <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                      </gsau:TypeIntoActivity.LocalVariables>
+                      <gsau:TypeIntoActivity.NextActivity>
+                        <gsau:TypeIntoActivity x:Name="__ReferenceID0" AnchorSelector="&lt;webctrl aaname='Company Name' tag='LABEL' check:innerText='Company Name' /&gt;" CanvasX="162.77600000000007" CanvasY="389.47999999999996" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_6cad8f7b" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='0Jpwg' name='0Jpwg' type='text' /&gt;" TextData="GlassLinq" Timeout="30000" UseAnchor="True">
+                          <gsau:TypeIntoActivity.LocalVariables>
+                            <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                          </gsau:TypeIntoActivity.LocalVariables>
+                          <gsau:TypeIntoActivity.NextActivity>
+                            <gsau:TypeIntoActivity x:Name="__ReferenceID1" AnchorSelector="&lt;webctrl aaname='Email' tag='LABEL' check:innerText='Email' /&gt;" CanvasX="175.06400000000008" CanvasY="575.336" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_f1dce2a7" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='5wEog' name='5wEog' type='text' /&gt;" TextData="email@GlssLinq.UI" Timeout="30000" UseAnchor="True">
+                              <gsau:TypeIntoActivity.LocalVariables>
+                                <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                              </gsau:TypeIntoActivity.LocalVariables>
+                              <gsau:TypeIntoActivity.NextActivity>
+                                <gsau:TypeIntoActivity x:Name="__ReferenceID2" AnchorSelector="&lt;webctrl aaname='Address' tag='LABEL' check:innerText='Address' /&gt;" CanvasX="307.1600000000001" CanvasY="747.368" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_ee309497" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='3wm9P' name='3wm9P' type='text' /&gt;" TextData="123 Bot Lane" Timeout="30000" UseAnchor="True">
+                                  <gsau:TypeIntoActivity.LocalVariables>
+                                    <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                                  </gsau:TypeIntoActivity.LocalVariables>
+                                  <gsau:TypeIntoActivity.NextActivity>
+                                    <gsau:TypeIntoActivity x:Name="__ReferenceID3" AnchorSelector="&lt;webctrl aaname='Phone Number' tag='LABEL' check:innerText='Phone Number' /&gt;" CanvasX="552.9200000000001" CanvasY="888.68" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_d465602a" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='zDGpw' name='zDGpw' type='text' /&gt;" TextData="888-999-0000" Timeout="30000" UseAnchor="True">
+                                      <gsau:TypeIntoActivity.LocalVariables>
+                                        <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                                      </gsau:TypeIntoActivity.LocalVariables>
+                                      <gsau:TypeIntoActivity.NextActivity>
+                                        <gsau:TypeIntoActivity x:Name="__ReferenceID4" AnchorSelector="&lt;webctrl aaname='Role in Company' tag='LABEL' check:innerText='Role in Company' /&gt;" CanvasX="817.8799999999999" CanvasY="1087.592" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_9ce4da81" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='44wEj' name='44wEj' type='text' /&gt;" TextData="Robot" Timeout="30000" UseAnchor="True">
+                                          <gsau:TypeIntoActivity.LocalVariables>
+                                            <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                                          </gsau:TypeIntoActivity.LocalVariables>
+                                          <gsau:TypeIntoActivity.NextActivity>
+                                            <gsau:TypeIntoActivity x:Name="__ReferenceID5" AnchorSelector="&lt;webctrl aaname='Last Name' tag='LABEL' check:innerText='Last Name' /&gt;" CanvasX="1077.464" CanvasY="1256.552" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_8f4201ae" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='prdaJ' name='prdaJ' type='text' /&gt;" TextData="1" Timeout="30000" UseAnchor="True">
+                                              <gsau:TypeIntoActivity.LocalVariables>
+                                                <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                                              </gsau:TypeIntoActivity.LocalVariables>
+                                              <gsau:TypeIntoActivity.NextActivity>
+                                                <gsac:ClickActivity NextActivity="{x:Null}" x:Name="__ReferenceID6" AlterIfDisabled="False" AnchorSelector="" CanvasX="1460.6960000000001" CanvasY="938.6000000000001" ClickType="CLICK_SINGLE" CursorMotionType="Instant" DelayAfter="0" DelayBefore="0" DisplayName="Click" Icon="⚡" MouseButton="BTN_LEFT" Name="Activity_54054809" Selector="&lt;webctrl tag='INPUT' class='btn uiColorButton' type='submit' /&gt;" SimulateClick="True" UseAnchor="False">
+                                                  <gsac:ClickActivity.LocalVariables>
+                                                    <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
+                                                  </gsac:ClickActivity.LocalVariables>
+                                                  <gsac:ClickActivity._Activities>
+                                                    <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                                                  </gsac:ClickActivity._Activities>
+                                                </gsac:ClickActivity>
+                                              </gsau:TypeIntoActivity.NextActivity>
+                                              <gsau:TypeIntoActivity._Activities>
+                                                <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                                              </gsau:TypeIntoActivity._Activities>
+                                            </gsau:TypeIntoActivity>
+                                          </gsau:TypeIntoActivity.NextActivity>
+                                          <gsau:TypeIntoActivity._Activities>
+                                            <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                                          </gsau:TypeIntoActivity._Activities>
+                                        </gsau:TypeIntoActivity>
+                                      </gsau:TypeIntoActivity.NextActivity>
+                                      <gsau:TypeIntoActivity._Activities>
+                                        <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                                      </gsau:TypeIntoActivity._Activities>
+                                    </gsau:TypeIntoActivity>
+                                  </gsau:TypeIntoActivity.NextActivity>
+                                  <gsau:TypeIntoActivity._Activities>
+                                    <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                                  </gsau:TypeIntoActivity._Activities>
+                                </gsau:TypeIntoActivity>
+                              </gsau:TypeIntoActivity.NextActivity>
+                              <gsau:TypeIntoActivity._Activities>
+                                <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                              </gsau:TypeIntoActivity._Activities>
+                            </gsau:TypeIntoActivity>
+                          </gsau:TypeIntoActivity.NextActivity>
+                          <gsau:TypeIntoActivity._Activities>
+                            <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                          </gsau:TypeIntoActivity._Activities>
+                        </gsau:TypeIntoActivity>
+                      </gsau:TypeIntoActivity.NextActivity>
+                      <gsau:TypeIntoActivity._Activities>
+                        <sco:ObservableCollection x:TypeArguments="BaseActivity" />
+                      </gsau:TypeIntoActivity._Activities>
+                    </gsau:TypeIntoActivity>
+                    <x:Reference>__ReferenceID0</x:Reference>
+                    <x:Reference>__ReferenceID1</x:Reference>
+                    <x:Reference>__ReferenceID2</x:Reference>
+                    <x:Reference>__ReferenceID3</x:Reference>
+                    <x:Reference>__ReferenceID4</x:Reference>
+                    <x:Reference>__ReferenceID5</x:Reference>
+                    <x:Reference>__ReferenceID6</x:Reference>
                   </StateActivity>
                 </StateTransition.TargetState>
               </StateTransition>
@@ -91,91 +175,14 @@
     <StateActivity._Activities>
       <sco:ObservableCollection x:TypeArguments="BaseActivity" />
     </StateActivity._Activities>
-    <gsau:TypeIntoActivity AnchorSelector="&lt;webctrl aaname='Phone Number' tag='LABEL' check:innerText='Phone Number' /&gt;" CanvasX="65.2399999999999" CanvasY="99.94400000000005" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_8fba94fc" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='U9yGZ' name='U9yGZ' type='text' /&gt;" TextData="7818087581" Timeout="30000" UseAnchor="True">
-      <gsau:TypeIntoActivity.LocalVariables>
+    <gsau:GoToURLActivity NextActivity="{x:Null}" BrowserVariable="" CanvasX="448.4720000000001" CanvasY="254.312" ClosePolicy="Never" ContinueOnError="False" DisplayName="Use Application/Browser: Go to URL" Icon="🚀" InputMode="Chromium API" Name="Activity_c165e32f" OpenPolicy="Always" Selector="&lt;html app='chrome.exe' title='*' /&gt;" Timeout="30000" Url="https://www.rpachallenge.com">
+      <gsau:GoToURLActivity.LocalVariables>
         <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-      </gsau:TypeIntoActivity.LocalVariables>
-      <gsau:TypeIntoActivity.NextActivity>
-        <gsau:TypeIntoActivity x:Name="__ReferenceID0" AnchorSelector="&lt;webctrl aaname='Email' tag='LABEL' check:innerText='Email' /&gt;" CanvasX="102.10399999999993" CanvasY="334.184" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_b6363286" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='djRR5' name='djRR5' type='text' /&gt;" TextData="email@gmail.com" Timeout="30000" UseAnchor="True">
-          <gsau:TypeIntoActivity.LocalVariables>
-            <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-          </gsau:TypeIntoActivity.LocalVariables>
-          <gsau:TypeIntoActivity.NextActivity>
-            <gsau:TypeIntoActivity x:Name="__ReferenceID1" AnchorSelector="&lt;webctrl aaname='Company Name' tag='LABEL' check:innerText='Company Name' /&gt;" CanvasX="220.37599999999998" CanvasY="589.928" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_4d4bd607" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='ZVZhD' name='ZVZhD' type='text' /&gt;" TextData="MyCompany" Timeout="30000" UseAnchor="True">
-              <gsau:TypeIntoActivity.LocalVariables>
-                <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-              </gsau:TypeIntoActivity.LocalVariables>
-              <gsau:TypeIntoActivity.NextActivity>
-                <gsau:TypeIntoActivity x:Name="__ReferenceID2" AnchorSelector="&lt;webctrl aaname='Role in Company' tag='LABEL' check:innerText='Role in Company' /&gt;" CanvasX="602.84" CanvasY="454.76" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_6cbd1f24" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='yQ6Yn' name='yQ6Yn' type='text' /&gt;" TextData="Admin" Timeout="30000" UseAnchor="True">
-                  <gsau:TypeIntoActivity.LocalVariables>
-                    <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-                  </gsau:TypeIntoActivity.LocalVariables>
-                  <gsau:TypeIntoActivity.NextActivity>
-                    <gsau:TypeIntoActivity x:Name="__ReferenceID3" AnchorSelector="&lt;webctrl aaname='Last Name' tag='LABEL' check:innerText='Last Name' /&gt;" CanvasX="627.416" CanvasY="300.392" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_b9d5d187" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='hKCEr' name='hKCEr' type='text' /&gt;" TextData="Smith" Timeout="30000" UseAnchor="True">
-                      <gsau:TypeIntoActivity.LocalVariables>
-                        <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-                      </gsau:TypeIntoActivity.LocalVariables>
-                      <gsau:TypeIntoActivity.NextActivity>
-                        <gsau:TypeIntoActivity x:Name="__ReferenceID4" AnchorSelector="&lt;webctrl aaname='Address' tag='LABEL' check:innerText='Address' /&gt;" CanvasX="703.4480000000001" CanvasY="147.56" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_add55dbf" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='BLo9r' name='BLo9r' type='text' /&gt;" TextData="123 Main St" Timeout="30000" UseAnchor="True">
-                          <gsau:TypeIntoActivity.LocalVariables>
-                            <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-                          </gsau:TypeIntoActivity.LocalVariables>
-                          <gsau:TypeIntoActivity.NextActivity>
-                            <gsau:TypeIntoActivity x:Name="__ReferenceID5" AnchorSelector="&lt;webctrl aaname='First Name' tag='LABEL' check:innerText='First Name' /&gt;" CanvasX="1115.096" CanvasY="180.584" ClickBeforeTyping="True" ContinueOnError="False" DelayAfter="0" DelayBefore="0" DeselectAtEnd="False" DisplayName="Type Into" EmptyField="True" Icon="⌨️" KeyModifiers="None" Name="Activity_2800d234" SecureText="False" Selector="&lt;webctrl tag='INPUT' id='j0gdX' name='j0gdX' type='text' /&gt;" TextData="Mike" Timeout="30000" UseAnchor="True">
-                              <gsau:TypeIntoActivity.LocalVariables>
-                                <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-                              </gsau:TypeIntoActivity.LocalVariables>
-                              <gsau:TypeIntoActivity.NextActivity>
-                                <gsac:ClickActivity NextActivity="{x:Null}" x:Name="__ReferenceID6" AlterIfDisabled="False" AnchorSelector="&lt;webctrl aaname='Last Name' tag='LABEL' check:innerText='Last Name' /&gt;" CanvasX="1190.3600000000001" CanvasY="432.488" ClickType="CLICK_SINGLE" CursorMotionType="Instant" DelayAfter="0" DelayBefore="0" DisplayName="Click" Icon="⚡" MouseButton="BTN_LEFT" Name="Activity_f9acd999" Selector="&lt;webctrl tag='INPUT' class='btn uiColorButton' type='submit' /&gt;" SimulateClick="True" UseAnchor="False">
-                                  <gsac:ClickActivity.LocalVariables>
-                                    <sco:ObservableCollection x:TypeArguments="gs:VisualVariable" />
-                                  </gsac:ClickActivity.LocalVariables>
-                                  <gsac:ClickActivity._Activities>
-                                    <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-                                  </gsac:ClickActivity._Activities>
-                                </gsac:ClickActivity>
-                              </gsau:TypeIntoActivity.NextActivity>
-                              <gsau:TypeIntoActivity._Activities>
-                                <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-                              </gsau:TypeIntoActivity._Activities>
-                            </gsau:TypeIntoActivity>
-                          </gsau:TypeIntoActivity.NextActivity>
-                          <gsau:TypeIntoActivity._Activities>
-                            <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-                          </gsau:TypeIntoActivity._Activities>
-                        </gsau:TypeIntoActivity>
-                      </gsau:TypeIntoActivity.NextActivity>
-                      <gsau:TypeIntoActivity._Activities>
-                        <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-                      </gsau:TypeIntoActivity._Activities>
-                    </gsau:TypeIntoActivity>
-                  </gsau:TypeIntoActivity.NextActivity>
-                  <gsau:TypeIntoActivity._Activities>
-                    <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-                  </gsau:TypeIntoActivity._Activities>
-                </gsau:TypeIntoActivity>
-              </gsau:TypeIntoActivity.NextActivity>
-              <gsau:TypeIntoActivity._Activities>
-                <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-              </gsau:TypeIntoActivity._Activities>
-            </gsau:TypeIntoActivity>
-          </gsau:TypeIntoActivity.NextActivity>
-          <gsau:TypeIntoActivity._Activities>
-            <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-          </gsau:TypeIntoActivity._Activities>
-        </gsau:TypeIntoActivity>
-      </gsau:TypeIntoActivity.NextActivity>
-      <gsau:TypeIntoActivity._Activities>
+      </gsau:GoToURLActivity.LocalVariables>
+      <gsau:GoToURLActivity._Activities>
         <sco:ObservableCollection x:TypeArguments="BaseActivity" />
-      </gsau:TypeIntoActivity._Activities>
-    </gsau:TypeIntoActivity>
-    <x:Reference>__ReferenceID0</x:Reference>
-    <x:Reference>__ReferenceID1</x:Reference>
-    <x:Reference>__ReferenceID2</x:Reference>
-    <x:Reference>__ReferenceID3</x:Reference>
-    <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
-    <x:Reference>__ReferenceID6</x:Reference>
+      </gsau:GoToURLActivity._Activities>
+    </gsau:GoToURLActivity>
   </StateActivity>
   <x:Reference>__ReferenceID7</x:Reference>
   <x:Reference>__ReferenceID9</x:Reference>
