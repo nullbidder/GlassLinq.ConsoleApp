@@ -303,11 +303,8 @@ namespace GlassLinq.Studio
                         {
                             try
                             {
-                                Log($"    │  ├─ Executing Node: {activity.DisplayName}");
-
-                                // Execute the sequence/activity container once. 
-                                // Because it's a Sequence or linked activity, it cascades natively.
-                                activity.Execute();
+                                // Use our recursive tracer instead of a blind .Execute() call
+                                ExecuteActivityWithDeepLogging(activity, "    │  ", new HashSet<object>());
                             }
                             catch (BusinessRuleException brex)
                             {
@@ -412,6 +409,81 @@ namespace GlassLinq.Studio
 
         #endregion
 
+
+        private void ExecuteActivityWithDeepLogging(BaseActivity activity, string indent, HashSet<object> trackedScope)
+        {
+            if (activity == null) return;
+
+            // Safety check to prevent any accidental recursive infinite graph rendering
+            if (trackedScope.Contains(activity)) return;
+            trackedScope.Add(activity);
+
+            string typeName = activity.GetType().Name;
+            Log($"{indent}├─ Executing Node: {activity.DisplayName} ({typeName})");
+
+            // Case A: Handle SequenceActivity and its explicit collections
+            if (typeName == "SequenceActivity")
+            {
+                dynamic seq = activity;
+                if (seq._Activities != null)
+                {
+                    foreach (var child in seq._Activities)
+                    {
+                        if (child is BaseActivity childAct)
+                        {
+                            ExecuteActivityWithDeepLogging(childAct, indent + "│  ", trackedScope);
+                        }
+                    }
+                }
+            }
+            // Case B: Trace Try block step execution (FIXED assignment error here)
+            else if (typeName == "TryCatchActivity")
+            {
+                dynamic tc = activity;
+                var tryBlockValue = tc.TryBlock;
+
+                if (tryBlockValue is BaseActivity tryAct)
+                {
+                    Log($"{indent}│  ├─ Entering [TRY] Scope");
+                    ExecuteActivityWithDeepLogging(tryAct, indent + "│  ", trackedScope);
+                }
+            }
+            // Case C: Trace DoWhile Loop evaluation blocks
+            else if (typeName == "DoWhileActivity")
+            {
+                dynamic dw = activity;
+                Log($"{indent}│  ├─ Evaluating Loop Condition: {dw.WhileCondition}");
+
+                if (dw._Activities != null)
+                {
+                    foreach (var child in dw._Activities)
+                    {
+                        if (child is BaseActivity childAct)
+                        {
+                            ExecuteActivityWithDeepLogging(childAct, indent + "│  ", trackedScope);
+                        }
+                    }
+                }
+            }
+            // Case D: Default single-action runner (e.g. GoToURLActivity, ClickActivity)
+            else
+            {
+                activity.Execute();
+            }
+
+            // Trace sequence connections hooked via NextActivity sequence layout properties
+            var nextActivityProperty = activity.GetType().GetProperty("NextActivity");
+            if (nextActivityProperty != null)
+            {
+                var nextValue = nextActivityProperty.GetValue(activity);
+                if (nextValue is BaseActivity nextNode)
+                {
+                    // Trace the next action connected immediately after this activity finishes
+                    ExecuteActivityWithDeepLogging(nextNode, indent, trackedScope);
+                }
+            }
+        }
+
         #region Default Condition Evaluator
 
         /// <summary>
@@ -483,5 +555,80 @@ namespace GlassLinq.Studio
         }
 
         #endregion
+
+
+        private void ExecuteActivityWithLogging(BaseActivity activity, string indent = "    │  ")
+        {
+            if (activity == null) return;
+
+            Log($"{indent}├─ Executing Node: {activity.DisplayName} ({activity.GetType().Name})");
+
+            // 1. If it's a Sequence, log its internal collection steps explicitly
+            if (activity.GetType().Name == "SequenceActivity")
+            {
+                dynamic seq = activity;
+                if (seq._Activities != null)
+                {
+                    foreach (var child in seq._Activities)
+                    {
+                        ExecuteActivityWithLogging(child, indent + "│  ");
+                    }
+                }
+
+                // Don't forget to track the continuation sequence link if it exists!
+                var nextProp = activity.GetType().GetProperty("NextActivity");
+                if (nextProp != null && nextProp.GetValue(activity) is BaseActivity nextNode)
+                {
+                    ExecuteActivityWithLogging(nextNode, indent);
+                }
+                return;
+            }
+
+            // 2. If it's a TryCatch block, trace into its Try block
+            if (activity.GetType().Name == "TryCatchActivity")
+            {
+                dynamic tc = activity;
+                if (tc.TryBlock != null)
+                {
+                    Log($"{indent}│  ├─ Entering [TRY] Block");
+                    ExecuteActivityWithLogging(tc.TryBlock, indent + "│  ");
+                }
+                return;
+            }
+
+            // 3. If it's a DoWhile loop, track its iterations and target child actions
+            if (activity.GetType().Name == "DoWhileActivity")
+            {
+                dynamic dw = activity;
+                Log($"{indent}│  ├─ Evaluating Loop Condition: {dw.WhileCondition}");
+
+                if (dw._Activities != null)
+                {
+                    foreach (var child in dw._Activities)
+                    {
+                        ExecuteActivityWithLogging(child, indent + "│  ");
+                    }
+                }
+
+                // Trace the next action connected immediately after the loop structure exits
+                var nextProp = activity.GetType().GetProperty("NextActivity");
+                if (nextProp != null && nextProp.GetValue(activity) is BaseActivity nextNode)
+                {
+                    ExecuteActivityWithLogging(nextNode, indent);
+                }
+                return;
+            }
+
+            // Default: Basic action execution leaf (e.g., GoToURLActivity, ClickActivity)
+            try
+            {
+                activity.Execute();
+            }
+            catch (Exception ex)
+            {
+                LogError($"{indent}│  └─ Execution Failed: {ex.Message}");
+                throw;
+            }
+        }
     }
 }
