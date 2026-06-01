@@ -9,7 +9,7 @@
  
 
   <ItemGroup>
-    <ProjectReference Include="..\GlassLinq.Studio\GlassLinq.Studio.csproj" />
+    <ProjectReference Include="..\nullbidder\GlassLinq.Studio\GlassLinq.Studio.csproj" />
   </ItemGroup>
  
 
